@@ -5,27 +5,26 @@ public class FindTarget {
 
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
-		System.out.println("Enter Array length : ");
-		int n=s.nextInt();
-		System.out.println();
-		int[] arr=new int[n];
-		for(int i=0; i<n; i++) {
-			arr[i]=s.nextInt();
-		}
-		System.out.println("Enter Target Value : ");
+		int[] arr= {1,2,4,6,7,};
+		int n=arr.length;
+		System.out.println("Enter Target : ");
 		int target=s.nextInt();
-		
-		int index=-1;
-		for(int i=0; i<n; i++) {
-			if(target==arr[i])
-				index=i;
-			else  if(target<arr[i]) {
-				index=i;
-				break;
-			}
+		System.out.println("Index : "+check(arr, target));
+	}
+	
+	public static int check(int[] arr, int target) {
+		int st=0, end=arr.length-1;
+		int mid=0;
+		while(st<=end) {
+			mid=(st+end)/2;	
+			if(arr[mid]==target)
+				return mid;
+			else if(arr[mid]<target)
+				st=mid+1;
+			else if(arr[mid]>target)
+				end=mid-1;
 		}
-		if(index==-1)index=n;
-		System.out.println("Output : "+index);
+		return end+1;
 	}
 
 }
